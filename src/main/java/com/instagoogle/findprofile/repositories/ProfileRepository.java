@@ -1,8 +1,11 @@
 package com.instagoogle.findprofile.repositories;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.instagoogle.findprofile.domain.Profile;
+
 @Repository
-public interface ProfileRepository	{
+public interface ProfileRepository extends JpaRepository<Profile, Integer>	{
 
 }

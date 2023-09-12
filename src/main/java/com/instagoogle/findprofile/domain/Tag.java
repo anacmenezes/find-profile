@@ -1,12 +1,19 @@
 package com.instagoogle.findprofile.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Tag implements Serializable {
@@ -16,6 +23,12 @@ public class Tag implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY) 
 	private Integer id;
 	private String name;
+	
+	@JsonIgnore
+	@ManyToMany
+	@JoinTable(name="TAGS_PROFILES", joinColumns = @JoinColumn(name="tags_id"), 
+	inverseJoinColumns = @JoinColumn(name="profiles_id"))
+	private List<Profile> profiles = new ArrayList<>();
 	
 	public Tag() {
 	}
@@ -40,6 +53,14 @@ public class Tag implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public List<Profile> getProfiles() {
+		return profiles;
+	}
+
+	public void setProfiles(List<Profile> profiles) {
+		this.profiles = profiles;
 	}
 
 	@Override
