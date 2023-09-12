@@ -62,6 +62,5 @@ public class CategoryResource {
 		List<CategoryDTO> listDto = list.stream().map(obj -> new CategoryDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDto);
 	}
-
 }
 
