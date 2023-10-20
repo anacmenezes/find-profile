@@ -30,6 +30,10 @@ public class Category implements Serializable {
 	inverseJoinColumns = @JoinColumn(name="profiles_id"))
 	private List<Profile> profiles = new ArrayList<>();
 	
+	@JsonIgnore
+	@ManyToMany(mappedBy="categories")
+	private List<Tag> tags = new ArrayList<>();
+	
 	public Category() {
 	}
 
@@ -61,6 +65,14 @@ public class Category implements Serializable {
 
 	public void setProfiles(List<Profile> profiles) {
 		this.profiles = profiles;
+	}
+
+	public List<Tag> getTags() {
+		return tags;
+	}
+
+	public void setTags(List<Tag> tags) {
+		this.tags = tags;
 	}
 
 	@Override

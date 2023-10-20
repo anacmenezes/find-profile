@@ -26,8 +26,13 @@ public class Tag implements Serializable {
 	
 	@JsonIgnore
 	@ManyToMany
-	@JoinTable(name="TAGS_PROFILES", joinColumns = @JoinColumn(name="tags_id"), 
-	inverseJoinColumns = @JoinColumn(name="profiles_id"))
+	@JoinTable(name = "TAGS_CATEGORIES", 
+	joinColumns = @JoinColumn(name = "tags_id"), 
+	inverseJoinColumns = @JoinColumn(name = "categories_id"))
+	private List<Category> categories = new ArrayList<>();
+	
+	@JsonIgnore
+	@ManyToMany(mappedBy="tags")
 	private List<Profile> profiles = new ArrayList<>();
 	
 	public Tag() {
@@ -53,6 +58,14 @@ public class Tag implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public List<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
 	}
 
 	public List<Profile> getProfiles() {
