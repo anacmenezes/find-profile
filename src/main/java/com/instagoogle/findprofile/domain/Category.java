@@ -3,16 +3,11 @@ package com.instagoogle.findprofile.domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 
 @Entity
@@ -24,13 +19,9 @@ public class Category implements Serializable {
 	private Integer id;
 	private String name;
 	
-	@JsonIgnore
-	@ManyToMany
-	@JoinTable(name="CATEGORIES_PROFILES", joinColumns = @JoinColumn(name="categories_id"), 
-	inverseJoinColumns = @JoinColumn(name="profiles_id"))
+	@ManyToMany(mappedBy="categories")
 	private List<Profile> profiles = new ArrayList<>();
 	
-	@JsonIgnore
 	@ManyToMany(mappedBy="categories")
 	private List<Tag> tags = new ArrayList<>();
 	
@@ -77,7 +68,10 @@ public class Category implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, name);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
 	}
 
 	@Override
@@ -89,6 +83,11 @@ public class Category implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Category other = (Category) obj;
-		return Objects.equals(id, other.id) && Objects.equals(name, other.name);
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
 }
