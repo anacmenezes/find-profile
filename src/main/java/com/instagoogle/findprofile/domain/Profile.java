@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.instagoogle.findprofile.dto.ProfileDTO;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -45,6 +46,9 @@ public class Profile implements Serializable {
 		super();
 		this.id = id;
 		this.name = name;
+	}
+
+	public Profile(ProfileDTO data) {
 	}
 
 	public Integer getId() {

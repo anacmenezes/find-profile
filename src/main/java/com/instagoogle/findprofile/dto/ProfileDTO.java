@@ -25,6 +25,9 @@ public class ProfileDTO implements Serializable {
 		name = obj.getName();
 	}
 
+	public ProfileDTO(Integer id, String name) {
+	}
+
 	public Integer getId() {
 		return id;
 	}

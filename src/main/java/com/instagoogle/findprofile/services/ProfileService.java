@@ -15,8 +15,6 @@ public class ProfileService {
 	
 	@Autowired
 	private ProfileRepository repo;
-//	@Autowired
-//	private CategoryRepository categoryRepository;
 	
 	public Profile find(Integer id) {
 		Optional<Profile> obj = repo.findById(id);
@@ -30,5 +28,10 @@ public class ProfileService {
 	public Profile findCategories(List<Category> categories) {
 	    Optional<Profile> obj = repo.findByCategoriesIn(categories); 
 	    return obj.orElseThrow();
+	}
+
+	public void findByCategoriesIn(List<Category> categories) {
+
+		
 	}
 }
