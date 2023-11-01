@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 import com.instagoogle.findprofile.domain.Category;
 import com.instagoogle.findprofile.dto.CategoryDTO;
 import com.instagoogle.findprofile.repositories.CategoryRepository;
+import com.instagoogle.findprofile.services.exception.DataIntegrityException;
+import com.instagoogle.findprofile.services.exception.ObjectNotFoundException;
 
 @Service
 public class CategoryService {
@@ -22,7 +24,7 @@ public class CategoryService {
 
 	public Category find(Integer id) {
 		Optional<Category> obj = repo.findById(id);
-		return obj.orElse(null);
+		return obj.orElseThrow(()-> new ObjectNotFoundException("Object not found! Id: " + id + ", Type: " + Category.class.getName()));
 	}
 
 	public Category insert(Category obj) {
@@ -41,7 +43,7 @@ public class CategoryService {
 		try {
 			repo.deleteById(id);
 		} catch (DataIntegrityViolationException e) {
-			throw (null);
+			throw new DataIntegrityException("Cannot delete a category that has linker profiles.");
 		}
 	}
 	
