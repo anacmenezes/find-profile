@@ -30,8 +30,6 @@ public class ProfileService {
 	    return obj.orElseThrow();
 	}
 
-	public void findByCategoriesIn(List<Category> categories) {
-
-		
+	public void findByCategoriesIn(List<Category> categories) {	
 	}
 }

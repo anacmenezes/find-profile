@@ -31,7 +31,7 @@ class ProfileRepositoryTest {
 	@DisplayName("Should get Profile successfully from DB")
 	void findByCategoriesInCase1() {
 		List<Category> categories = new ArrayList<>();
-		ProfileDTO data = new ProfileDTO(null, "Teste");
+		ProfileDTO data = new ProfileDTO(null, "Test");
 		this.createProfile(data);
 
 		Optional<Profile> result = this.profileRepository.findByCategoriesIn(categories);
