@@ -4,16 +4,16 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.instagoogle.findprofile.dto.ProfileDTO;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Profile implements Serializable {
@@ -37,7 +37,7 @@ public class Profile implements Serializable {
 		joinColumns = @JoinColumn(name="profiles_id"), 
 		inverseJoinColumns = @JoinColumn(name="tags_id")
 	)
-	private List<Tag> tags = new ArrayList<>();
+	private List<Tags> tags = new ArrayList<>();
 	
 	public Profile() {
 	}
@@ -75,11 +75,11 @@ public class Profile implements Serializable {
 		this.categories = categories;
 	}
 
-	public List<Tag> getTags() {
+	public List<Tags> getTags() {
 		return tags;
 	}
 
-	public void setTags(List<Tag> tags) {
+	public void setTags(List<Tags> tags) {
 		this.tags = tags;
 	}
 

@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,28 +15,29 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.instagoogle.findprofile.domain.Tag;
+import com.instagoogle.findprofile.domain.Tags;
 import com.instagoogle.findprofile.dto.TagDTO;
 import com.instagoogle.findprofile.services.TagService;
 
-import jakarta.validation.Valid;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@RequestMapping(value = "/tags")
+@RequestMapping(value = "/tags", produces = {"application/json"})
+@Tag(name = "tags")
 public class TagResource {
 	
 	@Autowired
 	private TagService service;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Tag> find(@PathVariable Integer id) {
-		Tag obj = service.find(id);
+	public ResponseEntity<Tags> find(@PathVariable Integer id) {
+		Tags obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody TagDTO objDto) {
-		Tag obj = service.fromDTO(objDto);
+		Tags obj = service.fromDTO(objDto);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
@@ -42,7 +45,7 @@ public class TagResource {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(@Valid @RequestBody TagDTO objDto, @PathVariable Integer id) {
-		Tag obj = service.fromDTO(objDto);
+		Tags obj = service.fromDTO(objDto);
 		obj.setId(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
@@ -57,7 +60,7 @@ public class TagResource {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<TagDTO>> findAll() {
-		List<Tag> list = service.findAll();
+		List<Tags> list = service.findAll();
 		List<TagDTO> listDto = list.stream().map(obj -> new TagDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDto);
 	}

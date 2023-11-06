@@ -2,7 +2,7 @@ package com.instagoogle.findprofile.dto;
 
 import java.io.Serializable;
 
-import com.instagoogle.findprofile.domain.Tag;
+import com.instagoogle.findprofile.domain.Tags;
 
 public class TagDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -13,7 +13,7 @@ public class TagDTO implements Serializable {
 	public TagDTO() {
 	}
 
-	public TagDTO(Tag obj) {
+	public TagDTO(Tags obj) {
 		id = obj.getId();
 		name = obj.getName();
 	}

@@ -5,18 +5,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-
 @Entity
-public class Tag implements Serializable {
+public class Tags implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -35,10 +35,10 @@ public class Tag implements Serializable {
 	@ManyToMany(mappedBy="tags")
 	private List<Profile> profiles = new ArrayList<>();
 	
-	public Tag() {
+	public Tags() {
 	}
 
-	public Tag(Integer id, String name) {
+	public Tags(Integer id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -89,7 +89,7 @@ public class Tag implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Tag other = (Tag) obj;
+		Tags other = (Tags) obj;
 		return Objects.equals(id, other.id) && Objects.equals(name, other.name);
 	}
 }

@@ -4,11 +4,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Category implements Serializable {
@@ -23,7 +23,7 @@ public class Category implements Serializable {
 	private List<Profile> profiles = new ArrayList<>();
 	
 	@ManyToMany(mappedBy="categories")
-	private List<Tag> tags = new ArrayList<>();
+	private List<Tags> tags = new ArrayList<>();
 	
 	public Category() {
 	}
@@ -58,11 +58,11 @@ public class Category implements Serializable {
 		this.profiles = profiles;
 	}
 
-	public List<Tag> getTags() {
+	public List<Tags> getTags() {
 		return tags;
 	}
 
-	public void setTags(List<Tag> tags) {
+	public void setTags(List<Tags> tags) {
 		this.tags = tags;
 	}
 

@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityManager;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +17,6 @@ import org.springframework.test.context.ActiveProfiles;
 import com.instagoogle.findprofile.domain.Category;
 import com.instagoogle.findprofile.domain.Profile;
 import com.instagoogle.findprofile.dto.ProfileDTO;
-
-import jakarta.persistence.EntityManager;
 
 @DataJpaTest
 @ActiveProfiles

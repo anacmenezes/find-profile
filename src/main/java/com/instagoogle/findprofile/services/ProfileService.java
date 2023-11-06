@@ -17,15 +17,6 @@ public class ProfileService {
 	@Autowired
 	private ProfileRepository repo;
 	
-	public Profile find(Integer id) {
-		Optional<Profile> obj = repo.findById(id);
-		return obj.orElseThrow(()-> new ObjectNotFoundException("Object not found! Id: " + id + ", Type: " + Profile.class.getName()));
-	}
-	
-	public List<Profile> findAll() {
-		return repo.findAll();
-	}	
-	
 	public Profile findCategories(List<Category> categories) {
 	    Optional<Profile> obj = repo.findByCategoriesIn(categories); 
 		return obj.orElseThrow(()-> new ObjectNotFoundException("Object not found!"));

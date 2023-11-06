@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import com.instagoogle.findprofile.domain.Tag;
+import com.instagoogle.findprofile.domain.Tags;
 import com.instagoogle.findprofile.dto.TagDTO;
 import com.instagoogle.findprofile.repositories.TagRepository;
 
@@ -17,18 +17,18 @@ public class TagService {
 	@Autowired
 	private TagRepository repo;
 
-	public Tag find(Integer id) {
-		Optional<Tag> obj = repo.findById(id);
+	public Tags find(Integer id) {
+		Optional<Tags> obj = repo.findById(id);
 		return obj.orElse(null);
 	}
 
-	public Tag insert(Tag obj) {
+	public Tags insert(Tags obj) {
 		obj.setId(null);
 		return repo.save(obj);
 	}
 
-	public Tag update(Tag obj) {
-		Tag newObj = find(obj.getId());
+	public Tags update(Tags obj) {
+		Tags newObj = find(obj.getId());
 		updateData(newObj, obj);
 		return repo.save(newObj);
 	}
@@ -42,15 +42,15 @@ public class TagService {
 		}
 	}
 	
-	public List<Tag> findAll() {
+	public List<Tags> findAll() {
 		return repo.findAll();
 	}	
 	
-	public Tag fromDTO(TagDTO objDto) {
-		return new Tag(objDto.getId(), objDto.getName());
+	public Tags fromDTO(TagDTO objDto) {
+		return new Tags(objDto.getId(), objDto.getName());
 	}
 
-	private void updateData(Tag newObj, Tag obj) {
+	private void updateData(Tags newObj, Tags obj) {
 		newObj.setName(obj.getName());
 	}
 }

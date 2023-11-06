@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -19,10 +21,11 @@ import com.instagoogle.findprofile.domain.Category;
 import com.instagoogle.findprofile.dto.CategoryDTO;
 import com.instagoogle.findprofile.services.CategoryService;
 
-import jakarta.validation.Valid;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@RequestMapping(value ="/categories")
+@RequestMapping(value = "/categories", produces = {"application/json"})
+@Tag(name = "categories")
 public class CategoryResource {
 	
 	@Autowired
