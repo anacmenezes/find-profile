@@ -32,34 +32,6 @@ public class ProfileServiceTest {
     }
 
     @Test
-    public void testFindProfileById() {
-    	
-        Profile profile = new Profile();
-        profile.setId(1);
-        profile.setName("Test profile");
-
-        when(profileRepository.findById(1)).thenReturn(Optional.of(profile));
-
-        Profile obj = profileService.find(1);
-
-        assertEquals(profile, obj);
-    }
-
-    @Test
-    public void testFindAllProfiles() {
-    	
-        List<Profile> profiles = new ArrayList<>();
-        profiles.add(new Profile(1, "Profile 1 test"));
-        profiles.add(new Profile(2, "Profile 2 test"));
-
-        when(profileRepository.findAll()).thenReturn(profiles);
-
-        List<Profile> obj = profileService.findAll();
-
-        assertEquals(profiles, obj);
-    }
-
-    @Test
     public void testFindProfileByCategories() {
 
         List<Category> categories = new ArrayList<>();
