@@ -11,7 +11,7 @@
 
 API para extensão em sites de busca como o google, o objetivo é que pareçam perfis de redes sociais ricos nas informações nais quais estamos buscando. CRUD utilizando Java Spring e Spring MVC para criação do servidor, Spring Data JPA para manipulação e persistência de dados, Swagger para visualização e Postgres para realizar a conexão com banco de dados.
 
-<h2 id="tecnologias">🔌 Tecnologias </h2> 
+<h2 id="tecnologias">🔌 Tecnologias</h2> 
  
 - [Spring Boot](https://spring.io/projects/spring-boot)
 - [Spring MVC](https://docs.spring.io/spring-framework/reference/web/webmvc.html)
